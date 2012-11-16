@@ -4,6 +4,5 @@
 	<select id="employees" resultClass="java.util.HashMap">
 		SELECT  *
 		FROM    EMPLOYEES
-
 	</select>
 </sqlMap>
