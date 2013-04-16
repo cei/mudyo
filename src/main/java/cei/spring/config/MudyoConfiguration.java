@@ -2,6 +2,7 @@ package cei.spring.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -17,18 +18,19 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 @ComponentScan(basePackages = {"cei.mudyo.web"})
 public class MudyoConfiguration extends WebMvcConfigurerAdapter {
 	private static final Logger log = LoggerFactory.getLogger("--- Mudyo Configuration ---");
-	
-	private static final String TEMPLATE_PATH = "classpath:cei/mudyo/templates/";
+
+	@Value("${mudyo.templates.path}")
+	private String mudyoTemplatesPath;
 
 	@Bean
 	public FreeMarkerConfigurer freemarkerConfig() {
 		FreeMarkerConfigurer config = new FreeMarkerConfigurer();
-		config.setTemplateLoaderPath(TEMPLATE_PATH);
+		config.setTemplateLoaderPath(mudyoTemplatesPath);
 
-		log.info("Freemarker template path: {}", TEMPLATE_PATH);
+		log.info("Freemarker template path: {}", mudyoTemplatesPath);
 
-		//22. Sep. 2012 by hellozkyz
-		//Jar 파일안에 Freemarker Template 를 호출 할때
+		//22. Sep. 2012 hellozkyz
+		//Jar 파일안에 Freemarker Template 를 호출 할때a
 		config.setPreferFileSystemAccess(false);
 
 		return config;
@@ -48,6 +50,10 @@ public class MudyoConfiguration extends WebMvcConfigurerAdapter {
 
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		log.info("favicon.ico registration!");
-		registry.addResourceHandler("/favicon.ico").addResourceLocations("/img/favicon.ico");
+		registry.addResourceHandler("/favicon.ico").addResourceLocations("classpath:cei/mudyo/templates/imgs/favicon.ico");
+		
+		registry.addResourceHandler("/img/mudyo").addResourceLocations("classpath:cei/mudyo/templates/img");
+		registry.addResourceHandler("/css/mudyo").addResourceLocations("classpath:cei/mudyo/templates/css");
+		registry.addResourceHandler("/js/mudyo").addResourceLocations("classpath:cei/mudyo/templates/js");
 	}
 }
