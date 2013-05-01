@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-	<entry key="mudyo.templates.path">classpath:cei/mudyo/templates/</entry>
-	<entry key="mudyo.main.uri">/main</entry>
+	<entry key="user.login.password.expired">90</entry>
+	<entry key="user.login.password.lockcount">5</entry>
 </properties>
