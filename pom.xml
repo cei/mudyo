@@ -232,5 +232,10 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>ognl</groupId>
+			<artifactId>ognl</artifactId>
+			<version>3.0.6</version>
+		</dependency>
 	</dependencies>
 </project>
